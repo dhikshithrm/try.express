@@ -1,0 +1,20 @@
+version: '3.1'
+services:
+  mongo-dev:
+    container_name: mongo-dev
+    image: mongo
+    ports:
+      - "27107:27107"
+    volumes:
+      - shared-data:/home/dhiks/docker-shared
+  
+  api-dev:
+    container_name: api-dev
+    build: .
+    ports: 
+      - "8000:8080"
+    links:
+      - mongo-dev
+    
+volumes:
+  shared-data:
